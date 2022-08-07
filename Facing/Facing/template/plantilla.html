@@ -52,7 +52,7 @@
                 <div class="collapse navbar-collapse order-3" id="navbarCollapse">
                     <ul class="nav navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link" href="">
+                            <a class="nav-link" href="{% url 'home' %}">
                                 <i class="fas fa-fw fa-home"></i>
                                 Inicio
                             </a>
@@ -67,19 +67,19 @@
                                         somos?</a>
                                     <ul class="dropdown-menu border-0 shadow">
                                         <li>
-                                            <a class="dropdown-item" href="">
+                                            <a class="dropdown-item" href="{% url 'reseñahistorica' %}">
                                                 Reseña Histórica
                                             </a>
                                         </li>
                                         <li>
-                                            <a class="dropdown-item" href="">
+                                            <a class="dropdown-item" href="{% url 'misionyvision' %}">
                                                 Misión y Visión
                                             </a>
                                         </li>
                                     </ul>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item" href="">Organigrama</a>
+                                    <a class="dropdown-item" href="{% url 'organigrama' %}">Organigrama</a>
                                 </li>
                                 <li class="dropdown-submenu dropdown-hover">
                                     <a class="dropdown-item dropdown-toggle" href="#" data-toggle="dropdown">Plana Docente
@@ -154,7 +154,7 @@
         {% block content %}{% endblock %}
     </div>
    
-    {% block js %} 
+    {% block scripts %} 
     {% endblock %}
 
     <script src="{% static '/vendor/jquery/jquery.min.js' %}"></script>

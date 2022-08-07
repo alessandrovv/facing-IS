@@ -19,5 +19,8 @@ from SeguridadApp.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-     path('',home ,name="home"),
+    path('',home ,name="home"),
+    path('misionyvision/',mvision ,name="misionyvision"),
+    path('organigrama/',organigrama ,name="organigrama"),
+     path('reseña/',reseñaH ,name="reseñahistorica"),
 ]
