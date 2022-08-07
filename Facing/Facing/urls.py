@@ -15,7 +15,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from SeguridadApp.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('',home ,name="home"),
+    path('misionyvision/',mvision ,name="misionyvision"),
+    path('organigrama/',organigrama ,name="organigrama"),
+    path('reseña/',reseñaH ,name="reseñahistorica"),
+    path('logout/',salir,name="logout"),
+    path('ingresar/', acceder, name='login'),   
 ]
