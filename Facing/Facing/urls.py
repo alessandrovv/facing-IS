@@ -22,5 +22,7 @@ urlpatterns = [
     path('',home ,name="home"),
     path('misionyvision/',mvision ,name="misionyvision"),
     path('organigrama/',organigrama ,name="organigrama"),
-     path('reseña/',reseñaH ,name="reseñahistorica"),
+    path('reseña/',reseñaH ,name="reseñahistorica"),
+    path('logout/',salir,name="logout"),
+    path('ingresar/', acceder, name='login'),   
 ]

@@ -147,10 +147,51 @@
                         </li>
                     </ul>
                 </div>
-                
+                {% if request.user.is_authenticated %}
+        <ul class="navbar-nav ml-auto order-1 order-md-3 navbar-no-expand">
+            <li class="nav-item dropdown user-menu">
+                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                    <img src="https://picsum.photos/300/300" class="user-image img-circle elevation-2"
+                        alt="{{request.user.name}}">
+                    <span class="d-none d-md-inline">
+                        {{request.user.first_name}} {{request.user.last_name}} 
+                    </span>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right"
+                    style="left: inherit; right: 0px;">
+                    <li class="user-header bg-success">
+                        <img src="https://picsum.photos/300/300" class="img-circle elevation-2"
+                            alt="{{request.user.name}}">
+                        <p>
+                            {{request.user.name}}
+                            <small>{{request.user.email}}</small>
+                            <small>Administrador</small>
+                        </p>
+                    </li>
+                    <li class="user-footer">
+                        <a class="btn btn-default btn-flat float-right  btn-block " href="{% url 'logout' %}">
+                            <i class="fa fa-fw fa-power-off"></i>
+                            Salir
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        {% else %}
+        <ul class="navbar-nav ml-auto order-1 order-md-3 navbar-no-expand">
+            <!-- Messages Dropdown Menu -->
+            <li class="nav-item">
+                <a href="{% url 'login' %}" class="nav-link">Iniciar Sesión</a>
+            </li>
+            <li class="nav-item">
+                <a href="" class="nav-link">Registrarse</a>
+            </li>
+        </ul>
+        {% endif %}
             </div>
         </nav>
         <br>
+        
         {% block content %}{% endblock %}
     </div>
    
