@@ -1,0 +1,27 @@
+{% extends "plantilla.html" %}
+
+{% load static %}
+
+{% block content %}
+
+<div style="padding: 4%;">
+    <div class="container">
+        <img src="{% static '/img/misin_y_visin.gif' %}" class="rounded img-fluid" alt="gif"><br><br>
+
+        <h1>MISIÓN</h1>
+
+        <p>“Formar profesionales e investigadores de la región norte y el país, con ética y calidad; creadores de conocimiento científico, tecnológico, humanístico e innovación, para el desarrollo sostenible de la sociedad".</p>
+        <br>
+        <h1>VISIÓN</h1>
+
+        <p>“Al 2021, la Universidad Nacional de Trujillo destaca por su excelencia académica y producción científica en el Perú y Latinoamérica”.</p>
+        <p>“Al 2024, la Universidad Nacional de Trujillo es una de las líderes en excelencia académica y producción científica con visibilidad e impacto en Latinoamérica y el mundo”</p>
+    </div>
+</div>
+{% endblock%}
+
+{% block scripts %}
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+    </script>
+{% endblock %}
