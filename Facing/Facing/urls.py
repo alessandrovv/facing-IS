@@ -25,5 +25,6 @@ urlpatterns = [
     path('faq/',faq ,name="preguntasfrec"),
     path('reseña/',reseñaH ,name="reseñahistorica"),
     path('logout/',salir,name="logout"),
-    path('ingresar/', acceder, name='login'),   
+    path('ingresar/', acceder, name='login'),
+    path('subirvideo/', subir, name='subirvideo'),   
 ]

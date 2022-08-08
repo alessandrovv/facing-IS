@@ -1,0 +1,55 @@
+{% extends "plantilla.html" %}
+
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'subir/proyectos.css' %}">
+{% endblock %}
+
+{% block content %}
+<div style="padding: 4%;">
+    <div class="container">
+    
+        <div class="wrapper">
+            <div class="video">
+                <video class="d-none" style="width: 100%; height: 100%; border: none;" src="" id="video" controls></video>
+            </div>
+            <div class="content">
+                <div class="icon">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                </div>
+                <div class="text">
+                    Ningún archivo seleccionado
+                </div>
+            </div>
+            <div id="cancel-btn">
+                <i class="fas fa-times"></i>
+            </div>
+            <div class="file-name">
+                Nombre del archivo
+            </div>
+        </div>
+        <button onclick="defaultBtnActive()" class="" id="custom-btn">Buscar Archivo</button>
+        <form action="" method="POST" enctype="multipart/form-data">
+         
+            <input id="default-btn" name="video" type="file" hidden><br>
+            Título del video: <textarea name="titulo" id="titulo" cols="40" rows="1" required></textarea><br>
+            Descripción: <textarea name="descripcion" id="descripcion" cols="43" rows="3" required></textarea>
+            Sección a subir:
+            <select name="seccion" id="seccion">
+                <option value="1">Novedades - Concurso Docente</option>
+                <option value="2">Novedades - Resoluciones Consejo Uni.</option>
+                <option value="3">Novedades - Virtual</option>
+                <option value="4">Calidad</option>
+            </select>
+            <input class="btn btn-outline-warning d-none" id="subir" type="submit" value="Subir Archivo">
+        </form>
+    </div>
+    </div>
+    <br>
+    
+{% endblock %}
+
+{% block scripts %}
+<script type="text/javascript" src="{% static 'subir/proyectos.js' %}"></script>
+{% endblock %}
