@@ -33,7 +33,7 @@ class Migration(migrations.Migration):
                 ('ruta', models.CharField(max_length=150)),
                 ('titulo', models.TextField()),
                 ('descripcion', models.TextField()),
-                ('seccion', models.TextField()),
+                ('seccion', models.SmallIntegerField()),
                 ('estado', models.BooleanField(default=True)),
                 ('idusuario', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
             ],

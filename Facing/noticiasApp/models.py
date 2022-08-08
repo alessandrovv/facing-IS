@@ -25,6 +25,6 @@ class Videos(models.Model):
     ruta=models.FileField(upload_to='videos',null=True)
     titulo=models.TextField()
     descripcion=models.TextField()
-    seccion=models.TextField()
+    seccion=models.SmallIntegerField()
     idusuario=models.ForeignKey(User,on_delete=models.CASCADE)
     estado=models.BooleanField(default=True)
