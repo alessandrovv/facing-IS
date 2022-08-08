@@ -1,10 +1,10 @@
-{% extends "plantilla.html" %}
+{% extends "plantilla1.html" %}
 {% block content %}
 <div class="container">
     <div class="card card-outline card-info mt-3">
         <div class="card-header">
-            <h1 class="card-title">LISTADO DE VIDEOS</h1>
-            <a href="{% url 'agregarvideos'}" class='btn btn-sm btn-primary btnadd'><i class='fas fa-plus'></i> NUEVO</a>
+            <h1 class="card-title">LISTADO DE DOCENTES</h1>
+            <a href="{% url 'adddocente' %}" class='btn btn-sm btn-primary btnadd'><i class='fas fa-plus'></i> NUEVO</a>
         </div>
         <div class="card-body">
 
@@ -27,27 +27,31 @@
                 <table id="tablasubfamilias" class="table table-striped mt4" style="width:100%">
                     <thead class="bg-info text-white">
                         <tr>
-                            <th></th>
-                            <th></th>
+                            <th>ID</th>
+                            <th>NOMBRE</th>
+                            <th>FOTO</th>
+                            <th>ID ESCUELA</th>
                             <th>
                                 <center>OPCIONES</center>
                             </th>
                         </tr>
                     </thead>
-                    {% if videos %}
-                    {% for itemvideos in videos %}
+                    {% if docente %}
+                    {% for itemdocente in docente %}
                     <tr>
-                        <td>{{ itemvideos.id }}</td>
-                        <td>{{ itemvideos.descripcion }}</td>
+                        <td>{{ itemdocente.idDocente }}</td>
+                        <td>{{ itemdocente.Nombre }}</td>
+                        <td><img src="../../../media/{{ itemdocente.ImagenRuta }}" class="img-thumbnail" width="200" height="200"></td>
+                        <td>{{ itemdocente.idEscuela_id }}</td>
                         <td style="text-align: center;">
-                            <a href="" class="btn btn-info btnsm"><i class="fa fa-edit"></i> Editar</a>
-                            <a href="" class="btn btn-danger btnsm"><i class="fa fa-trash"></i>Eliminar</a>
+                            <a href="{% url 'editdocente' itemdocente.idDocente %}" class="btn btn-info btnsm"><i class="fa fa-edit"></i> Editar</a>
+                            <a href="{% url 'deletedocente' itemdocente.idDocente %}" class="btn btn-danger btnsm"><i class="fa fa-trash"></i>Eliminar</a>
                         </td>
                     </tr>
                     {% endfor %}
                     {% else %}
                     <tr style="text-align: center;">
-                        <td colspan="3">
+                        <td colspan="5">
                             <p>No hay Registros</p>
                         </td>
                     </tr>

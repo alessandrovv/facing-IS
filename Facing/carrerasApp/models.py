@@ -1,3 +1,4 @@
+from distutils.command.upload import upload
 from operator import mod, truediv
 from pyexpat import model
 from tkinter import CASCADE
@@ -12,7 +13,7 @@ class Escuelas(models.Model):
 class Docentes(models.Model):
     idDocente=models.AutoField(primary_key=True)
     Nombre=models.CharField(max_length=40)
-    ImagenRuta=models.CharField(max_length=50)
+    ImagenRuta=models.ImageField(upload_to="docentes", null=True)
     idEscuela=models.ForeignKey(Escuelas, on_delete=models.CASCADE)
     
 class Grado_docente(models.Model):

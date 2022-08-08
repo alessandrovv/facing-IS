@@ -1,10 +1,10 @@
-{% extends "plantilla.html" %}
+{% extends "plantilla1.html" %}
 {% block content %}
 {% load crispy_forms_tags %}
 <div class="container">
     <div class="card card-info mx-4 my-4">
         <div class="card-header">
-            <h1 class="card-title">EDITAR NOTICIAS IMAGENES</h1>
+            <h1 class="card-title">EDITAR CICLOS</h1>
         </div>
         <div class="card-body">
             <form action="" method="post">
@@ -12,7 +12,7 @@
                 {{ form | crispy}}
 
                 <div class="d-flex justify-content-end">
-                    <a href="{% url 'listarnoticiasimagenes' %}" class="btn btnsecondary">Cancelar</a>
+                    <a href="{% url 'ciclos' %}" class="btn btnsecondary">Cancelar</a>
                     &nbsp;
                     <button type="submit" class="btn btnprimary">Actualizar</button>
                 </div>

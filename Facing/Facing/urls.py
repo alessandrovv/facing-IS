@@ -17,6 +17,8 @@ from django.contrib import admin
 from django.urls import path
 from SeguridadApp.views import *
 from AdminApp.views import *
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -28,4 +30,16 @@ urlpatterns = [
     path('logout/',salir,name="logout"),
     path('ingresar/', acceder, name='login'),  
     path('dashboard/', dashboard, name='dashboard'), 
+    path('listarciclos',listarciclo,name='ciclos'),
+    path('agregarciclo',agregarciclo,name='addciclo'),
+    path('eliminarciclo/<int:id>/',eliminarciclo,name='deleteciclo'),
+    path('editarciclo/<int:id>/',editarciclo,name='editciclo'),
+    path('listardocente',listardocente,name='docentes'),
+    path('agregardocente',agregardocente,name='adddocente'),
+    path('eliminardocente/<int:id>/',eliminardocente,name='deletedocente'),
+    path('editardocente/<int:id>/',editardocente,name='editdocente'),
+
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

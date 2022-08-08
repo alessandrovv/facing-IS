@@ -15,22 +15,22 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Ciclos',
             fields=[
-                ('idciclo', models.AutoField(primary_key=True, serialize=False)),
+                ('id', models.AutoField(primary_key=True, serialize=False)),
                 ('ciclo', models.CharField(max_length=4)),
             ],
         ),
         migrations.CreateModel(
             name='Docentes',
             fields=[
-                ('iddocente', models.AutoField(primary_key=True, serialize=False)),
-                ('nombre', models.CharField(max_length=40)),
-                ('imagenRuta', models.CharField(max_length=50)),
+                ('idDocente', models.AutoField(primary_key=True, serialize=False)),
+                ('Nombre', models.CharField(max_length=40)),
+                ('ImagenRuta', models.ImageField(upload_to="docentes", null=True)),
             ],
         ),
         migrations.CreateModel(
             name='Escuelas',
             fields=[
-                ('idescuela', models.AutoField(primary_key=True, serialize=False)),
+                ('id', models.AutoField(primary_key=True, serialize=False)),
                 ('nombre', models.CharField(max_length=30)),
                 ('slug', models.CharField(max_length=12)),
                 ('visto', models.IntegerField()),
@@ -63,6 +63,7 @@ class Migration(migrations.Migration):
                 ('codigo', models.CharField(max_length=5, primary_key=True, serialize=False)),
                 ('codigoint', models.CharField(max_length=4)),
                 ('asignatura', models.CharField(max_length=69)),
+                ('tipo',models.CharField(max_length=2)),
                 ('creditos', models.SmallIntegerField()),
                 ('condicion', models.CharField(max_length=1)),
                 ('ht', models.SmallIntegerField()),

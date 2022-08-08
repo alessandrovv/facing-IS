@@ -17,7 +17,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Noticias',
             fields=[
-                ('idnoticia', models.AutoField(primary_key=True, serialize=False)),
+                ('id', models.AutoField(primary_key=True, serialize=False)),
                 ('titulo', models.TextField()),
                 ('descripcion', models.TextField()),
                 ('seccion', models.SmallIntegerField()),
@@ -29,7 +29,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Videos',
             fields=[
-                ('idvideo', models.AutoField(primary_key=True, serialize=False)),
+                ('id', models.AutoField(primary_key=True, serialize=False)),
                 ('ruta', models.CharField(max_length=150)),
                 ('titulo', models.TextField()),
                 ('descripcion', models.TextField()),
