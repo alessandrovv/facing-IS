@@ -4,7 +4,7 @@ from .models import *
 # Register your models here.
 
 class DocentesAdmin(admin.ModelAdmin):
-    list_display=("nombre","idEscuela")
+    list_display=("Nombre","idEscuela")
 
 admin.site.register(Docentes,DocentesAdmin)
 admin.site.register(Escuelas)
