@@ -1,0 +1,254 @@
+font_widgets *TixMenu}
+    variable _button_font_widgets {*Button}
+
+    variable _system_font_widgets {*Label \
+		*Message \
+                *Scale *Radiobutton *Checkbutton
+    }
+    if {$_usetix} {
+	lappend _system_font_widgets \
+	    *TixBalloon*message *TixLabelFrame*Label \
+	    *TixControl*label *TixControl*Label \
+	    *TixLabelEntry*label *TixNoteBook.nbframe \
+	    *TixFileEntry*label *TixComboBox*label  \
+	    *TixOptionMenu*menubutton  *TixBitmapButton*label  \
+	    *TixMwmClient*title *TixFileSelectBox*Label
+    }
+   variable _text_type_widgets {*Canvas *Entry *Listbox *Text}
+   if {$_usetix} {
+       lappend _text_type_widgets \
+	   *TixComboBox*Entry *TixControl*entry *TixScrolledHList*hlist \
+	   *TixDirTree*hlist *TixDirList*hlist *TixTree*hlist \
+	   *TixMultiList*Listbox *TixScrolledListBox*listbox  \
+	   *TixFileEntry*Entry *TixLabelEntry*Entry \
+	   *TixFileEntry*entry *TixLabelEntry*entry \
+	   *TixScrolledTList*tlist  *TixScrolledText*text \
+	   *TixHList *TixCheckList*hlist
+       # These arent working yet
+       lappend _text_type_widgets \
+	       *TixDirTree*f1 *TixDirList*f1 \
+	       *TixFileSelectBox*file*listbox \
+	       *TixFileSelectBox*directory*listbox \
+	       *TixExFileSelectBox*filelist*listbox
+   }
+
+   variable _insert_type_widgets {*Entry *Text}
+   if {$_usetix} {
+       lappend _insert_type_widgets \
+	   *TixControl*entry *TixComboBox*Entry
+    }
+
+   variable _select_type_widgets {*Checkbutton \
+	   *Radiobutton \
+	   *Menu}
+   variable _active_borderwidth_widgets {*Button *Radiobutton *Checkbutton}
+
+   # Other Widgets that are given a borderwidth of $wm_default::borderwidth
+   variable _nonzero_borderwidth_widgets {}
+
+   # Widgets that are given a borderwidth of 0
+   # must not be  *Entry
+   variable _null_borderwidth_widgets {*Menubutton *Label}
+
+   variable _scrollbar_widgets {}
+   variable _scrollbar_widgets {*Scrollbar}
+   if {$_usetix} {
+       lappend  _scrollbar_widgets \
+	       *TixTree*Scrollbar *TixDirTree*Scrollbar *TixDirList*Scrollbar \
+	       *TixScrolledTList*Scrollbar *TixScrolledListBox*Scrollbar \
+	       *TixScrolledHList*Scrollbar *TixMultiView*Scrollbar \
+	       *TixScrolledText*Scrollbar *TixScrolledWindow*Scrollbar  \
+	       *TixCObjView*Scrollbar
+   }
+
+   proc debug {str} {
+       if {[llength [info commands "tix"]] &&
+	   [string is true -strict [tix cget -debug]]} {
+	   puts $str
+       }
+   }
+
+    # Return the array of what we have deduced
+    proc getoptions {} {
+	set retval {}
+	set len [string length "::wm_default::"]
+        foreach variable [lsort [info vars ::wm_default::*]] {
+	    if {[string match ::wm_default::_* $variable]} {continue}
+	    set key [string range $variable $len end]
+	    lappend retval $key [set $variable]
+	}
+	return $retval
+    }
+
+    # Print out the array of what we have deduced
+    proc parray {} {
+	set retval ""
+        foreach {key val} [::wm_default::getoptions] {
+	    append retval [join [list $key $val]] "\n"
+	}
+	debug $retval
+	return $retval
+    }
+
+    # Pick a default borderwidth in pixels
+    set _bd 2
+    # Pick a default font size in pixels
+    set _screenheight [winfo screenheight .]
+    if {$_screenheight < 500} {
+	# for 800x600 or smaller
+	set _pixel 10
+	set _point 8
+	# Pick a default borderwidth which smaller
+	set _bd 1
+    } elseif {$_screenheight < 800} {
+	# for 1024x768
+	set _pixel 12
+	set _point 8
+    } elseif {$_screenheight < 1100} {
+	# for 1200x1000
+	set _pixel 12
+	set _point 8
+    } else {
+	set _pixel 12
+	set _point 10
+    }
+
+    # setup defaults depending on the OS and Window Manager
+    # Really should do another version for mono
+    if {$tcl_platform(platform) eq "windows"} {
+
+	if {$tcl_platform(osVersion) < 5} {
+	    set _prop_default "MS Sans Serif"
+	} else {
+	    set _prop_default "Tahoma"
+	}
+
+	# make sure this font is installed 
+	set _allowed [string tolow [font families]]
+	foreach font [list $_prop_default "MS Sans Serif" Tahoma Arial System] {
+	    if {[lsearch -exact $_allowed [string tolow $font]] > -1} {
+		set _prop_default $font
+		break
+	    }
+	}
+
+	set _fixed_default {Courier New}
+	# make sure this font is installed 
+	foreach font [list $_fixed_default Courier System] {
+	    if {[lsearch -exact $_allowed [string tolow $font]] > -1} {
+		set _fixed_default $font
+		break
+	    }
+	}
+
+	# Windows colors:
+	#    "3dDarkShadow",		COLOR_3DDKSHADOW,
+	#    "3dLight",			COLOR_3DLIGHT,
+	#    "ActiveBorder",		COLOR_ACTIVEBORDER,
+	#    "ActiveCaption",		COLOR_ACTIVECAPTION,
+	#    "AppWorkspace",		COLOR_APPWORKSPACE,
+	#    "Background",		COLOR_BACKGROUND,
+	#    "ButtonFace",		COLOR_BTNFACE,
+	#    "ButtonHighlight",		COLOR_BTNHIGHLIGHT,
+	#    "ButtonShadow",		COLOR_BTNSHADOW,
+	#    "ButtonText",		COLOR_BTNTEXT,
+	#    "CaptionText",		COLOR_CAPTIONTEXT,
+	#    "DisabledText",		COLOR_GRAYTEXT,
+	#    "GrayText",		COLOR_GRAYTEXT,
+	#    "Highlight",		COLOR_HIGHLIGHT,
+	#    "HighlightText",		COLOR_HIGHLIGHTTEXT,
+	#    "InactiveBorder",		COLOR_INACTIVEBORDER,
+	#    "InactiveCaption",		COLOR_INACTIVECAPTION,
+	#    "InactiveCaptionText",	COLOR_INACTIVECAPTIONTEXT,
+	#    "InfoBackground",		COLOR_INFOBK,
+	#    "InfoText",			COLOR_INFOTEXT,
+	#    "Menu",			COLOR_MENU,
+	#    "MenuText",			COLOR_MENUTEXT,
+	#    "Scrollbar",		COLOR_SCROLLBAR,
+	#    "Window",			COLOR_WINDOW,
+	#    "WindowFrame",		COLOR_WINDOWFRAME,
+	#    "WindowText",		COLOR_WINDOWTEXT,
+
+	variable \
+		background       	"SystemButtonFace" \
+		foreground       	"SystemButtonText" \
+		disabledforeground      "SystemDisabledText" \
+		disabledbackground      "SystemButtonShadow" \
+		textfamily	     	$_prop_default \
+		systemfamily       	$_prop_default \
+		menufamily 	      	$_prop_default \
+		fixedfamily       	$_fixed_default \
+		fontsize	      	$_point \
+		textbackground   	"SystemWindow" \
+		textforeground   	"SystemWindowText" \
+		disabledtextbackground  "SystemDisabledText" \
+		selectbackground 	"SystemHighlight" \
+		selectforeground 	"SystemHighlightText" \
+		selectcolor      	"SystemWindow" \
+		highlightcolor  	"SystemWindowFrame" \
+		highlightbackground 	"SystemButtonFace" \
+		scrollbars		"SystemScrollbar" \
+		borderwidth      	$_bd \
+		menubackground		"SystemMenu" \
+		menuforeground		"SystemMenuText"
+
+	variable highlightthickness         	1
+
+	# Windows does not have an activebackground, but Tk does
+	variable activebackground $background
+	variable activeforeground $foreground
+    } else {
+	# intended for Unix
+
+	# Tk uses the following defaults:
+
+	#define NORMAL_BG	"#d9d9d9"
+	#define ACTIVE_BG	"#ececec"
+	#define SELECT_BG	"#c3c3c3"
+	#define TROUGH		"#c3c3c3"
+	#define INDICATOR	"#b03060"
+	#define DISABLED	"#a3a3a3"
+
+	# We know . exists and it has a background
+	# This should be "#d9d9d9" under default Tk
+	set _bg [. cget -background]
+
+	set _prop_default helvetica
+	# make sure this font is installed 
+	set _allowed [string tolow [font families]]
+	foreach font [list $_prop_default times fixed] {
+	    if {[lsearch -exact $_allowed [string tolow $font]] > -1} {
+		set _prop_default $font
+		break
+	    }
+	}
+	set _fixed_default courier
+	# make sure this font is installed 
+	foreach font [list $_fixed_default fixed] {
+	    if {[lsearch -exact $_allowed [string tolow $font]] > -1} {
+		set _fixed_default $font
+		break
+	    }
+	}
+
+	variable \
+		background       	$_bg \
+		foreground       	Black \
+		disabledforeground      #808080 \
+		disabledbackground      #a3a3a3 \
+		textfamily	 	$_prop_default \
+		systemfamily       	$_prop_default \
+		menufamily       	$_prop_default \
+		fixedfamily       	$_fixed_default \
+		fontsize		$_pixel \
+		textbackground   	white \
+		textforeground   	Black \
+		disabledtextbackground  $_bg \
+		selectbackground 	#000080 \
+		selectforeground 	white \
+		selectcolor      	yellow \
+		highlightcolor  	Black \
+		highlightbackground     $_bg \
+		scrollbars		"#c3c3c3" \
+		borderwidth      	$_bd \
+		me
