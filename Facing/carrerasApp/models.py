@@ -10,9 +10,9 @@ class Escuelas(models.Model):
     visto=models.IntegerField()
 
 class Docentes(models.Model):
-    iddocente=models.AutoField(primary_key=True)
-    nombre=models.CharField(max_length=40)
-    imagenRuta=models.CharField(max_length=50)
+    idDocente=models.AutoField(primary_key=True)
+    Nombre=models.CharField(max_length=40)
+    ImagenRuta=models.CharField(max_length=50)
     idEscuela=models.ForeignKey(Escuelas, on_delete=models.CASCADE)
     
 class Grado_docente(models.Model):
@@ -26,13 +26,14 @@ class Exp_lab(models.Model):
     exp=models.TextField()
     
 class Ciclos(models.Model):
-    idciclo=models.AutoField(primary_key=True)
+    id=models.AutoField(primary_key=True)
     ciclo=models.CharField(max_length=4)
 
 class Curriculas(models.Model):
     codigo=models.CharField(primary_key=True, max_length=5)
     codigoint=models.CharField(max_length=4)
     asignatura=models.CharField(max_length=69)
+    tipo=models.CharField(max_length=2)
     creditos=models.SmallIntegerField()
     condicion=models.CharField(max_length=1)
     ht=models.SmallIntegerField()

@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 # Create your models here.
 
 class Noticias(models.Model):
-    idnoticia=models.AutoField(primary_key=True)
+    id=models.AutoField(primary_key=True)
     titulo=models.TextField()
     descripcion=models.TextField()
     seccion=models.SmallIntegerField()
@@ -21,7 +21,7 @@ class Noticias_imagenes(models.Model):
     idnoticia=models.ForeignKey(Noticias,on_delete=models.CASCADE)
 
 class Videos(models.Model):
-    idvideo=models.AutoField(primary_key=True)
+    id=models.AutoField(primary_key=True)
     ruta=models.CharField(max_length=150)
     titulo=models.TextField()
     descripcion=models.TextField()
