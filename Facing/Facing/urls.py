@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from SeguridadApp.views import *
+from AdminApp.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -25,5 +26,6 @@ urlpatterns = [
     path('faq/',faq ,name="preguntasfrec"),
     path('reseña/',reseñaH ,name="reseñahistorica"),
     path('logout/',salir,name="logout"),
-    path('ingresar/', acceder, name='login'),   
+    path('ingresar/', acceder, name='login'),  
+    path('dashboard/', dashboard, name='dashboard'), 
 ]
