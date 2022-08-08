@@ -8,6 +8,9 @@ from django.contrib import messages
 def home(request):
     return render(request,'inicio.html')
 
+def faq(request):
+    return render(request,'nosotros/faq.html')
+
 def mvision(request):
     return render(request,'nosotros/MVision.html')
 
