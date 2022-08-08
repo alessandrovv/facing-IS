@@ -47,6 +47,10 @@ urlpatterns = [
     path('noticia/agregar/',agregarNoticia,name='agregarnoticia'),
     path('noticia/editar/<int:id>/',editarNoticia,name='editarnoticia'),
     path('noticia/eliminar/<int:id>/',eliminarNoticia,name='eliminarnoticia'),
+    path('listarvideo',listarvideo, name='videos'),
+    path('agregarvideo',agregarvideo,name='addvideo'),
+    path('listarvideo/eliminarvideo/<int:id>/',eliminarvideo,name='deletevideo'),
+    path('editarvideo/<int:id>/',editarvideo,name='editvideo'),
 ]
 
 if settings.DEBUG:

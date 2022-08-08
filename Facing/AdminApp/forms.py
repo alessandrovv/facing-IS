@@ -30,3 +30,7 @@ class NoticiaForm(forms.ModelForm):
         widgets = {
             'fecha':DateInput()
         }
+class VideoForm(forms.ModelForm):
+    class Meta:
+        model=Videos
+        fields = ['ruta','titulo','descripcion','seccion','idusuario']

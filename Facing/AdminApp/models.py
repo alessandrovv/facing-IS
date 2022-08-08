@@ -16,5 +16,6 @@ class Noticia(models.Model):
     seccion = models.TextField()
     fecha = models.DateField()
     estado = models.BooleanField(default=True)
+    
 
    

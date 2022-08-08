@@ -193,3 +193,49 @@ def eliminarNoticia(request,id):
     noticia.estado = False
     noticia.save()
     return redirect("listarnoticia")
+
+def listarvideo(request):
+    queryset=request.GET.get("buscar")
+    video=Videos.objects.filter(estado=True).order_by('-id').values()
+    if queryset:
+        video=Videos.objects.filter(Q(titulo__icontains=queryset)).distinct() 
+    context={'video':video}
+    return render(request,"videos/listar.html",context)
+
+def agregarvideo(request):
+    form = VideoForm()
+    if request.method=="POST":
+        form= VideoForm(request.POST,request.FILES)
+        if form.is_valid():
+            form.save() 
+            return redirect("videos")
+        else:
+            form = VideoForm()
+            print (request.POST)
+    context={'form':form} 
+    return render(request,"videos/agregar.html",context) 
+
+def editarvideo(request,id):
+    if request.method == "POST":
+        if id==None:
+            form = VideoForm(request.POST)
+        else:
+            video = Videos.objects.get(pk=id)
+            form = VideoForm(request.POST,request.FILES, instance=video)
+        if form.is_valid():
+            form.save()
+        return redirect("videos")
+    else:
+        if id==None:
+            form = VideoForm()
+        else:
+            video = Videos.objects.get(pk = id)
+            form = VideoForm(instance=video)
+        return render(request,"videos/editar.html",{'form':form})
+    
+def eliminarvideo(request,id):
+    noticia=Videos.objects.get(id=id)
+    noticia.estado = False
+    noticia.save()
+    print(noticia)
+    return redirect("videos")

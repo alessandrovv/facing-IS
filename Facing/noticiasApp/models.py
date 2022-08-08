@@ -22,7 +22,7 @@ class Noticias_imagenes(models.Model):
 
 class Videos(models.Model):
     id=models.AutoField(primary_key=True)
-    ruta=models.CharField(max_length=150)
+    ruta=models.FileField(upload_to='videos',null=True)
     titulo=models.TextField()
     descripcion=models.TextField()
     seccion=models.TextField()
