@@ -1,0 +1,105 @@
+{% extends "plantilla1.html" %}
+{% block content %}
+<div class="container">
+    <div class="card card-outline card-info mt-3">
+        <div class="card-header">
+            <h1 class="card-title">LISTADO DE ESCUELAS</h1>
+            <a href="{% url 'addvideo' %}" class='btn btn-sm btn-primary btnadd'><i class='fas fa-plus'></i> NUEVO</a>
+        </div>
+        <div class="card-body">
+
+            <div class="row">
+                <div class="col-md-6 pull-right">
+                    <form action="" method="GET">
+                        <div class="input-group">
+                            <input type="text" name="buscar" id="buscar" cla ss="form-control" autofocus
+                                placeholder="Buscar" value="">
+                            <span class="input-group-btn">
+                                <button class="btn btn-primary">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </span>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+            <div class="table mt-2">
+                <table class="table mt-2">
+                    <table id="tablasubfamilias" class="table table-striped mt4" style="width:100%">
+                        <thead class="bg-info text-white">
+                            <tr>
+                                <th>ID</th>
+                                <th>VIDEO</th>
+                                <th>TITULO</th>
+                                <th>DESCRIPCION</th>
+                                <th>SECCION</th>
+                                <th>ID USUARIO</th>
+                                <th>
+                                    <center>OPCIONES</center>
+                                </th>
+                            </tr>
+                        </thead>
+                        {% if video %}
+                        {% for itemvideo in video %}
+                        <tr>
+                            <td>{{ itemvideo.id }}</td>
+                            <td><video height="200px" controls><source src="{../../../../../media/{{ itemvideo.ruta }}"></video></td>
+                            <td>{{ itemvideo.titulo }}</td>
+                            <td>{{ itemvideo.descripcion }}</td>
+                            <td>{{ itemvideo.seccion }}</td>
+                            <td>{{ itemvideo.idusuario_id }}</td>
+                            <td style="text-align: center;">
+                                <a href="{% url 'editvideo' itemvideo.id %}" class="btn btn-info btnsm"><i class="fa fa-edit"></i> Editar</a>
+                                <a href="#" onclick="eliminarEscuela('{{itemvideo.id}}','{{itemvideo.titulo}}')" class="btn btn-danger btnsm"><i class="fa fa-trash"></i></a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                        {% else %}
+                        <tr style="text-align: center;">
+                            <td colspan="7">
+                                <p>No hay Registros</p>
+                            </td>
+                        </tr>
+                        {% endif %}
+                    </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock  %}
+{% block js %}
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    {% if messages %}
+    {% for m in messages %}
+        <script>
+            Swal.fire({
+            "title": "Eliminado",
+            "text":"{{m}}",
+            "icon":"success"
+            })
+        </script>
+    {% endfor %}
+    {% endif %}
+    <script>
+        function eliminarEscuela(id,nombre){
+            Swal.fire({ "title":"¿Realmente desea eliminar Registro?",
+            "text":"Codigo: "+ id + ", Nombre: " + nombre,
+            "icon":"question",
+            "showCancelButton":true,
+            "cancelButtonText":"No",
+            "confirmButtonText":"Si",
+            "reverseButton":true,
+            "confirmButtonColor":"#dc3545"
+            }).then(function(result){ if(result.isConfirmed){
+                //console.log(window.location.href - 'lista/#');
+                let url = window.location.href;
+                url = url.slice(0,-8);
+                //console.log(`${url}/eliminar/${id}`);
+                
+                window.location.href="listarvideo/eliminarvideo/"+id+"/" 
+            }
+            })
+        }
+    </script>
+{% endblock %} 

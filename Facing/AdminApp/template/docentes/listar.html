@@ -1,0 +1,64 @@
+{% extends "plantilla1.html" %}
+{% block content %}
+<div class="container">
+    <div class="card card-outline card-info mt-3">
+        <div class="card-header">
+            <h1 class="card-title">LISTADO DE DOCENTES</h1>
+            <a href="{% url 'adddocente' %}" class='btn btn-sm btn-primary btnadd'><i class='fas fa-plus'></i> NUEVO</a>
+        </div>
+        <div class="card-body">
+
+            <div class="row">
+                <div class="col-md-6 pull-right">
+                    <form action="" method="GET">
+                        <div class="input-group">
+                            <input type="text" name="buscar" id="buscar" cla ss="form-control" autofocus
+                                placeholder="Buscar" value="">
+                            <span class="input-group-btn">
+                                <button class="btn btn-primary">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <table class="table mt-2">
+                <table id="tablasubfamilias" class="table table-striped mt4" style="width:100%">
+                    <thead class="bg-info text-white">
+                        <tr>
+                            <th>ID</th>
+                            <th>NOMBRE</th>
+                            <th>FOTO</th>
+                            <th>ID ESCUELA</th>
+                            <th>
+                                <center>OPCIONES</center>
+                            </th>
+                        </tr>
+                    </thead>
+                    {% if docente %}
+                    {% for itemdocente in docente %}
+                    <tr>
+                        <td>{{ itemdocente.idDocente }}</td>
+                        <td>{{ itemdocente.Nombre }}</td>
+                        <td><img src="../../../media/{{ itemdocente.ImagenRuta }}" class="img-thumbnail" width="200" height="200"></td>
+                        <td>{{ itemdocente.idEscuela_id }}</td>
+                        <td style="text-align: center;">
+                            <a href="{% url 'editdocente' itemdocente.idDocente %}" class="btn btn-info btnsm"><i class="fa fa-edit"></i> Editar</a>
+                            <a href="{% url 'deletedocente' itemdocente.idDocente %}" class="btn btn-danger btnsm"><i class="fa fa-trash"></i>Eliminar</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    {% else %}
+                    <tr style="text-align: center;">
+                        <td colspan="5">
+                            <p>No hay Registros</p>
+                        </td>
+                    </tr>
+                    {% endif %}
+                </table>
+        </div>
+    </div>
+</div>
+</div>
+{% endblock %}

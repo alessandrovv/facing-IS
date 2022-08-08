@@ -39,7 +39,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'carrerasApp',
+    'noticiasApp',
     'SeguridadApp',
+    'AdminApp',
     'crispy_forms',
 ]
 
@@ -59,7 +62,8 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [os.path.join(BASE_DIR,'Facing/template'),
-                 os.path.join(BASE_DIR,'SeguridadApp/template')],
+                 os.path.join(BASE_DIR,'SeguridadApp/template'),
+                 os.path.join(BASE_DIR,'AdminApp/template')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -81,14 +85,13 @@ WSGI_APPLICATION = 'Facing.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'facing',
+        'NAME': 'dbfacing',
         'USER': 'root',
         'PASSWORD': '',
         'HOST': 'localhost',
         'PORT': '3306'
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
@@ -126,6 +129,7 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR,'SeguridadApp/static')]
+STATICFILES_DIRS = [os.path.join(BASE_DIR,'AdminApp/static')]
 STATICFILES_DIRS = [os.path.join(BASE_DIR,'Facing/static')]
 
 # Default primary key field type
@@ -141,3 +145,6 @@ message_constants.SUCCESS:'succes',
 message_constants.WARNING:'warning',
 message_constants.ERROR:'danger',
 }
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

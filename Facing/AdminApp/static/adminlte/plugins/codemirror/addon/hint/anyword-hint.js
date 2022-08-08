@@ -1,0 +1,15 @@
+6 18:31:55.480][00000AB0][00000AB4][Always] SqlSatelliteDirectory=C:\Program Files\Microsoft SQL Server\MSSQL14.MSSQLSERVER\MSSQL\Binn
+[2022-05-16 18:31:55.480][00000AB0][00000AB4][Always] JobCleanupOnExit=1
+[2022-05-16 18:31:55.480][00000AB0][00000AB4][Always] --- Settings ---
+[2022-05-16 18:31:55.480][00000AB0][00000AB4][Always] ProtocolVersion=2
+[2022-05-16 18:31:55.480][00000AB0][00000AB4][Always] Language=Python
+[2022-05-16 18:31:55.480][00000AB0][00000AB4][Always] File=C:\Program Files\Microsoft SQL Server\MSSQL14.MSSQLSERVER\MSSQL\Binn\pythonlauncher.config
+[2022-05-16 18:31:55.480][00000AB0][00000AB4][Always] RHome=C:\Program Files\Microsoft SQL Server\MSSQL14.MSSQLSERVER\MSSQL\Binn\%RHOME%
+[2022-05-16 18:31:55.480][00000AB0][00000AB4][Always] PythonEnabled=1
+[2022-05-16 18:31:55.480][00000AB0][00000AB4][Always] PythonHome=C:\Program Files\Microsoft SQL Server\MSSQL14.MSSQLSERVER\PYTHON_SERVICES
+[2022-05-16 18:31:55.480][00000AB0][00000AB4][Always] MpiHome=C:\Program Files\Microsoft MPI
+[2022-05-16 18:31:55.480][00000AB0][00000AB4][Always] InstanceName=MSSQLSERVER
+[2022-05-16 18:31:55.480][00000AB0][00000AB4][Always] LogDirectory=C:\Program Files\Microsoft SQL Server\MSSQL14.MSSQLSERVER\MSSQL\LOG\ExtensibilityLog
+[2022-05-16 18:31:55.480][00000AB0][00000AB4][Always] WorkingDirectory=C:\PROGRA~1\MICROS~1\MSSQL1~1.MSS\MSSQL\EXTENS~1
+[2022-05-16 18:31:55.480][00000AB0][00000AB4][Always] WorkingDirectoryLongPath=C:\Program Files\Microsoft SQL Server\MSSQL14.MSSQLSERVER\MSSQL\ExtensibilityData
+[2022-05-16 18:31:55.480][00000AB0][00000AB4][Always] SqlSatellitePath=C:\Program Files\Microsoft SQL Server\MSSQL14.MSSQLSERVER\MSSQL\Binn\sqlsa
