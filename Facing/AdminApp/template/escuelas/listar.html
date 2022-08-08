@@ -43,8 +43,8 @@
                         <td class="text-center">/{{ itemescuela.slug }}/</td>
                         <td class="text-center">{{ itemescuela.visto }}</td>
                         <td style="text-align: center;">
-                            <a href="{% url 'editarescuela' itemescuela.idEscuela %}" class="btn btn-info btnsm"><i class="fa fa-edit"></i></a>
-                            <a href="#" onclick="eliminarEscuela('{{itemescuela.idEscuela}}','{{itemescuela.nombre}}')" class="btn btn-danger btnsm"><i class="fa fa-trash"></i></a>
+                            <a href="{% url 'editarescuela' itemescuela.idescuela %}" class="btn btn-info btnsm"><i class="fa fa-edit"></i></a>
+                            <a href="#" onclick="eliminarEscuela('{{itemescuela.idescuela}}','{{itemescuela.nombre}}')" class="btn btn-danger btnsm"><i class="fa fa-trash"></i></a>
                         </td>
                     </tr>
                     {% endfor %}

@@ -45,8 +45,8 @@
                         <td class="text-center">{{ itemnoticia.seccion }}</td>
                         <td class="text-center">{{ itemnoticia.fecha | date:"d-m-Y"}}</td>
                         <td style="text-align: center;">
-                            <a href="{% url 'editarnoticia' itemnoticia.idNoticia %}" class="btn btn-info btnsm"><i class="fa fa-edit"></i></a>
-                            <a href="#" onclick="eliminarNoticia('{{itemnoticia.idNoticia}}','{{itemnoticia.titulo | truncatewords:5}}')" class="btn btn-danger btnsm"><i class="fa fa-trash"></i></a>
+                            <a href="{% url 'editarnoticia' itemnoticia.id %}" class="btn btn-info btnsm"><i class="fa fa-edit"></i></a>
+                            <a href="#" onclick="eliminarNoticia('{{itemnoticia.id}}','{{itemnoticia.titulo | truncatewords:5}}')" class="btn btn-danger btnsm"><i class="fa fa-trash"></i></a>
                         </td>
                     </tr>
                     {% endfor %}

@@ -34,6 +34,7 @@ class Migration(migrations.Migration):
                 ('nombre', models.CharField(max_length=30)),
                 ('slug', models.CharField(max_length=12)),
                 ('visto', models.IntegerField()),
+                ('estado', models.BooleanField(default=True)),
             ],
         ),
         migrations.CreateModel(

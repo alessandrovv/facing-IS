@@ -1,9 +1,12 @@
 
+from tkinter import Widget
 from django import forms 
 from django.forms import fields
-from carrerasApp.models import Ciclos
-from carrerasApp.models import Docentes
-from .models import *
+from carrerasApp.models import *
+from noticiasApp.models import *
+
+class DateInput(forms.DateInput):
+    input_type = 'date'
 
 class CiclosForm(forms.ModelForm):
     class Meta:
@@ -17,10 +20,13 @@ class DocentesForm(forms.ModelForm):
 
 class EscuelaForm(forms.ModelForm):
     class Meta:
-        model=Escuela
+        model=Escuelas
         fields = ['nombre','slug','visto']
 
 class NoticiaForm(forms.ModelForm):
     class Meta:
-        model = Noticia
-        fields = ['titulo', 'descripcion', 'seccion', 'fecha']
+        model = Noticias
+        fields = ['titulo', 'descripcion', 'seccion', 'fecha','idusuario']
+        widgets = {
+            'fecha':DateInput()
+        }

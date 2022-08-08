@@ -6,7 +6,7 @@ import imp
 from django.contrib import messages 
 from carrerasApp.models import *
 from django.db.models import Q
-from .forms import CiclosForm, DocentesForm
+from .forms import *
 from django.core.paginator import Paginator
 
 # Create your views here.
@@ -105,9 +105,9 @@ def eliminardocente(request,id):
 # Create your views here.
 def listarEscuela(request):
     queryset = request.GET.get("buscar")
-    escuela = Escuela.objects.filter(estado=True).order_by('-idEscuela').values()
+    escuela = Escuelas.objects.filter(estado=True).order_by('-idescuela').values()
     if queryset:
-        escuela = Escuela.objects.filter(Q(nombre__icontains=queryset), estado=True).values()
+        escuela = Escuelas.objects.filter(Q(nombre__icontains=queryset), estado=True).values()
     paginator = Paginator(escuela,3)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
@@ -119,7 +119,7 @@ def agregarEscuela(request):
         form = EscuelaForm(request.POST)
         if form.is_valid():
             nombre_escuela_form = form.cleaned_data.get("nombre")
-            escuela = Escuela.objects.filter(Q(nombre__iexact=nombre_escuela_form), estado=True).values("nombre")
+            escuela = Escuelas.objects.filter(Q(nombre__iexact=nombre_escuela_form), estado=True).values("nombre")
             if not escuela:
                 form.save()
                 return redirect("listarescuela")
@@ -131,7 +131,7 @@ def agregarEscuela(request):
     return render(request,"escuelas/agregar.html",context)
 
 def editarEscuela(request,id):
-    escuela = Escuela.objects.get(idEscuela=id)
+    escuela = Escuelas.objects.get(idescuela=id)
     if request.method=='POST':
         form = EscuelaForm(request.POST,instance=escuela)
         if form.is_valid():
@@ -143,7 +143,7 @@ def editarEscuela(request,id):
         return render(request,"escuelas/editar.html",context)
 
 def eliminarEscuela(request,id):
-    escuela=Escuela.objects.get(idEscuela=id)
+    escuela=Escuelas.objects.get(idescuela=id)
     escuela.estado = False
     escuela.save()
     return redirect("listarescuela")
@@ -151,9 +151,9 @@ def eliminarEscuela(request,id):
 
 def listarNoticia(request):
     queryset = request.GET.get("buscar")
-    noticia = Noticia.objects.filter(estado=True).order_by('-idNoticia').values()
+    noticia = Noticias.objects.filter(estado=True).order_by('-id').values()
     if queryset:
-        noticia = Noticia.objects.filter(Q(titulo__icontains=queryset) | Q(descripcion__icontains=queryset), estado=True).values()
+        noticia = Noticias.objects.filter(Q(titulo__icontains=queryset) | Q(descripcion__icontains=queryset), estado=True).values()
     paginator = Paginator(noticia,3)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
@@ -165,7 +165,7 @@ def agregarNoticia(request):
         form = NoticiaForm(request.POST)
         if form.is_valid():
             titulo_noticia_form = form.cleaned_data.get("titulo")
-            noticia = Noticia.objects.filter(Q(titulo__iexact=titulo_noticia_form), estado=True).values("titulo")
+            noticia = Noticias.objects.filter(Q(titulo__iexact=titulo_noticia_form), estado=True).values("titulo")
             if not noticia:
                 form.save()
                 return redirect("listarnoticia")
@@ -177,7 +177,7 @@ def agregarNoticia(request):
     return render(request,"noticias/agregar.html",context)
 
 def editarNoticia(request,id):
-    noticia = Noticia.objects.get(idNoticia=id)
+    noticia = Noticias.objects.get(id=id)
     if request.method=='POST':
         form = NoticiaForm(request.POST,instance=noticia)
         if form.is_valid():
@@ -189,7 +189,7 @@ def editarNoticia(request,id):
         return render(request,"noticias/editar.html",context)
 
 def eliminarNoticia(request,id):
-    noticia=Noticia.objects.get(idNoticia=id)
+    noticia=Noticias.objects.get(id=id)
     noticia.estado = False
     noticia.save()
     return redirect("listarnoticia")

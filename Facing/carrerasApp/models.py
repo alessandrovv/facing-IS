@@ -9,6 +9,7 @@ class Escuelas(models.Model):
     nombre=models.CharField(max_length=30)
     slug=models.CharField(max_length=12)
     visto=models.IntegerField()
+    estado=models.BooleanField(default=True)
 
 class Docentes(models.Model):
     idDocente=models.AutoField(primary_key=True)

@@ -13,7 +13,7 @@ class Noticias(models.Model):
     seccion=models.SmallIntegerField()
     fecha=models.DateTimeField()
     idusuario=models.ForeignKey(User,on_delete=models.CASCADE)
-    estado=models.SmallIntegerField()
+    estado=models.BooleanField(default=True)
 
 class Noticias_imagenes(models.Model):
     id=models.AutoField(primary_key=True)
@@ -27,4 +27,4 @@ class Videos(models.Model):
     descripcion=models.TextField()
     seccion=models.TextField()
     idusuario=models.ForeignKey(User,on_delete=models.CASCADE)
-    estado=models.SmallIntegerField()
+    estado=models.BooleanField(default=True)
