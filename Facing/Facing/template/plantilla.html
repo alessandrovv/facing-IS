@@ -85,10 +85,13 @@
                                     <a class="dropdown-item dropdown-toggle" href="#" data-toggle="dropdown">Plana Docente
                                     </a>
                                     <ul class="dropdown-menu border-0 shadow">
-                                            <li>
-                                                <a class="dropdown-item" href="">
-                                                </a>
-                                            </li>
+                                        {% for itemescuelas in escuelas %}
+                                        <li>
+                                            <a class="dropdown-item" href="">
+                                                {{ itemescuelas.nombre }}
+                                            </a>
+                                        </li>
+                                    {% endfor %}
                                     </ul>
                                 </li>
                             </ul>
@@ -98,13 +101,13 @@
                                 <i class="fas fa-fw fa-university"></i>Carreras
                             </a>
                             <ul class="dropdown-menu border-0 shadow">
-                                
+                                {% for itemescuelas in escuelas %}
                                     <li>
                                         <a class="dropdown-item" href="">
-                                            
+                                            {{ itemescuelas.nombre }}
                                         </a>
                                     </li>
-                                
+                                {% endfor %}
                             </ul>
                         </li>
     

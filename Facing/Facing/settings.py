@@ -85,7 +85,7 @@ WSGI_APPLICATION = 'Facing.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'dbfacing',
+        'NAME': 'facing',
         'USER': 'root',
         'PASSWORD': '',
         'HOST': 'localhost',

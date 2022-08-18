@@ -2,26 +2,29 @@ from django.shortcuts import redirect,render
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import authenticate,login,logout 
 from django.contrib import messages 
-
+from carrerasApp.models import Escuelas
+from django.db.models import Q
 # Create your views here.
+escuelas=Escuelas.objects.all()
+context={'escuelas':escuelas}
 
 def home(request):
-    return render(request,'inicio.html')
+    return render(request,'inicio.html',context)
 
 def faq(request):
-    return render(request,'nosotros/faq.html')
+    return render(request,'nosotros/faq.html',context)
 
 def subir(request):
-    return render(request,'nosotros/subir.html')
+    return render(request,'nosotros/subir.html',context)
 
 def mvision(request):
-    return render(request,'nosotros/MVision.html')
+    return render(request,'nosotros/MVision.html',context)
 
 def organigrama(request):
-    return render(request,'nosotros/organigrama.html')
+    return render(request,'nosotros/organigrama.html',context)
 
 def reseñaH(request):
-    return render(request,'nosotros/reseñahistorica.html')
+    return render(request,'nosotros/reseñahistorica.html',context)
 
 def acceder(request):
     return render(request,'login.html')
