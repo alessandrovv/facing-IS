@@ -87,7 +87,7 @@
                                     <ul class="dropdown-menu border-0 shadow">
                                         {% for itemescuelas in escuelas %}
                                         <li>
-                                            <a class="dropdown-item" href="">
+                                            <a class="dropdown-item" href="{% url 'docentes' itemescuelas.idescuela %}">
                                                 {{ itemescuelas.nombre }}
                                             </a>
                                         </li>

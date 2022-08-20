@@ -17,6 +17,7 @@ from unicodedata import name
 from django.contrib import admin
 from django.urls import path
 from SeguridadApp.views import *
+from carrerasApp.views import *
 from AdminApp.views import *
 from django.conf import settings
 from django.conf.urls.static import static
@@ -52,6 +53,7 @@ urlpatterns = [
     path('agregarvideo',agregarvideo,name='addvideo'),
     path('listarvideo/eliminarvideo/<int:id>/',eliminarvideo,name='deletevideo'),
     path('editarvideo/<int:id>/',editarvideo,name='editvideo'),
+    path('planadocente/<int:id>/',listardocentes,name='docentes'),
 ]
 
 if settings.DEBUG:
