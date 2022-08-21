@@ -11,6 +11,9 @@ def home(request):
 def faq(request):
     return render(request,'nosotros/faq.html')
 
+def subir(request):
+    return render(request,'nosotros/subir.html')
+
 def mvision(request):
     return render(request,'nosotros/MVision.html')
 

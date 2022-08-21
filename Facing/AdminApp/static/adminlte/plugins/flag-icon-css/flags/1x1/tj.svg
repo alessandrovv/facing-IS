@@ -1,0 +1,50 @@
+ect element 4 (was 3) from the config-options to
+	get value from optiondb. [Patch #483838] (decoster)
+
+	* utils.tcl: added else case to place is called with location
+	different from 'at' and 'center' and without a parent.
+	[Patch #484123] (decoster)
+
+	* mainframe.tcl: added options -menubarfont, -menuentryfont and
+	-statusbarfont at creation time of the widget as well as
+	subsequent configures. [Patch #479935] (chevreux)
+
+	* listbox.tcl: added multipleinsert command to allow faster
+	inserts of multiple items. [Patch #458446] (chevreux)
+	* widget.tcl: added Widget::copyinit. [Patch #458446] (chevreux)
+
+	* BWman/NoteBook.html:
+	* notebook.tcl: added options for enhanced tab shape in notebooks.
+	[Patch #402466] (haneef)
+
+	* configure.in:
+	* pkgIndex.tcl:
+	* README.txt: bumped version to 1.4.0 (not released)
+
+	* mainframe.tcl (_create_menubar): start tagstate initially on.
+	[Patch #470273] (chevreux)
+	(_parse_accelerator): improve F* function key accelerator support.
+	[Patch #444172] (venski)
+
+2001-10-14  Jeff Hobbs  <jeffh@ActiveState.com>
+
+	* pagesmgr.tcl: reverted fix of 2001-10-11 - it was bogus.
+
+2001-10-11  Jeff Hobbs  <jeffh@ActiveState.com>
+
+	* pagesmgr.tcl: allowed the ability to specify page by name,
+	not just number.
+
+2001-09-11  Andreas Kupries  <andreas_kupries@users.sourceforge.net>
+
+	* notebook.tcl: Removed 'Canvas' from the list of bindtags for the
+	  internal canvas to prevent interference from application
+	  specific bindings with our special widget. [459033].
+
+2001-09-06  Andreas Kupries  <andreas_kupries@users.sourceforge.net>
+
+	* passwddlg.tcl: Accepted change by Bastien Chevreux
+	  <bach@users.sourceforge.net> adding a -logineditable option to
+	  the password dialog. [436340].
+
+2001-09-05  Andreas Kupries  <andreas_kupries@users.sour

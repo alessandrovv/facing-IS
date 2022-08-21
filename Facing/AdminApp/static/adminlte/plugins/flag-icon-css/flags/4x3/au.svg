@@ -1,0 +1,56 @@
+not have an activebackground, but Tk does
+	variable activebackground "#ececec"
+	variable activeforeground $foreground
+   }
+
+   # priority should be userDefault?
+   if {$_usetix} {
+       variable priority [tix cget -schemepriority]
+   } else {
+       variable priority 75
+   }
+
+   # variables that will be derived during addoptions - set to null for now
+   variable system_font {}
+   variable menu_font  {}
+   variable fixed_font {}
+   variable text_font  {}
+
+   # Different desktops have different visible regions
+   # This is not working properly yet.
+   variable geometry 0+0+[winfo screenwidth .]+$_screenheight
+
+   # Different desktops have different focusmodels: clicktofocus or
+   # followsmouse This is not working properly yet
+   variable focusmodel clicktofocus
+
+   # Some desktops have standardized link colors
+   # This is not working properly yet
+   variable linkcolor "#0000ff" vlinkcolor "#800000" alinkcolor "#800080"
+
+   proc default {args} {
+	# Override the defaults with any optional arguments
+	foreach {var val} $args {
+	    set $var $val
+	}
+    }
+
+    proc setup {{type ""}} {
+	# type is one of the recognized window managers
+	# one of: cde kde win
+	global tcl_platform env
+
+	if {$type == ""} {
+	    if {[set type [::tixDetermineWM]] == ""} {
+		set ::wm_default::wm ""
+		# Generic unix
+		return
+	    }
+	}
+	setup-$type
+	set ::wm_default::wm $type
+	# todo - make the menubutton enter and leave events more compatible
+    }
+
+    proc setup-windows {args} {
+	# Already d

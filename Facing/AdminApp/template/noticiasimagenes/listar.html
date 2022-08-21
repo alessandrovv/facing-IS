@@ -1,10 +1,10 @@
-{% extends "plantilla.html" %}
+{% extends "plantilla1.html" %}
 {% block content %}
 <div class="container">
     <div class="card card-outline card-info mt-3">
         <div class="card-header">
-            <h1 class="card-title">LISTADO DE NOTICIASIMAGENES</h1>
-            <a href="{% url 'agregarnoticiasimagenes'}" class='btn btn-sm btn-primary btnadd'><i class='fas fa-plus'></i> NUEVO</a>
+            <h1 class="card-title">LISTADO DE CICLOS </h1>
+            <a href="{% url 'addciclo' %}" class='btn btn-sm btn-primary btnadd'><i class='fas fa-plus'></i> NUEVO</a>
         </div>
         <div class="card-body">
 
@@ -27,21 +27,21 @@
                 <table id="tablasubfamilias" class="table table-striped mt4" style="width:100%">
                     <thead class="bg-info text-white">
                         <tr>
-                            <th></th>
-                            <th></th>
+                            <th>ID</th>
+                            <th>CICLO</th>
                             <th>
                                 <center>OPCIONES</center>
                             </th>
                         </tr>
                     </thead>
-                    {% if noticiasimagenes %}
-                    {% for itemnoticiasimagenes in noticiasimagenes %}
+                    {% if ciclo %}
+                    {% for itemciclos in ciclo %}
                     <tr>
-                        <td>{{ itemnoticiasimagenes.id }}</td>
-                        <td>{{ itemnoticiasimagenes.descripcion }}</td>
+                        <td>{{ itemciclos.id }}</td>
+                        <td>{{ itemciclos.ciclo }}</td>
                         <td style="text-align: center;">
-                            <a href="" class="btn btn-info btnsm"><i class="fa fa-edit"></i> Editar</a>
-                            <a href="" class="btn btn-danger btnsm"><i class="fa fa-trash"></i>Eliminar</a>
+                            <a href="{% url 'editciclo' itemciclos.id %}" class="btn btn-info btnsm"><i class="fa fa-edit"></i> Editar</a>
+                            <a href="{% url 'deleteciclo' itemciclos.id %}" class="btn btn-danger btnsm"><i class="fa fa-trash"></i>Eliminar</a>
                         </td>
                     </tr>
                     {% endfor %}
