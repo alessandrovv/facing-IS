@@ -10,6 +10,8 @@ class Escuelas(models.Model):
     slug=models.CharField(max_length=12)
     visto=models.IntegerField()
     estado=models.BooleanField(default=True)
+    def __str__(self):
+        return self.nombre
 
 class Docentes(models.Model):
     idDocente=models.AutoField(primary_key=True)
@@ -30,6 +32,8 @@ class Exp_lab(models.Model):
 class Ciclos(models.Model):
     id=models.AutoField(primary_key=True)
     ciclo=models.CharField(max_length=4)
+    def __str__(self):
+       return self.ciclo
 
 class Curriculas(models.Model):
     codigo=models.CharField(primary_key=True, max_length=5)
@@ -45,3 +49,4 @@ class Curriculas(models.Model):
     departamento=models.CharField(max_length=36)
     idciclo=models.ForeignKey(Ciclos, on_delete=models.CASCADE)
     idescuela=models.ForeignKey(Escuelas, on_delete=models.CASCADE)
+    estado=models.BooleanField(default=True)

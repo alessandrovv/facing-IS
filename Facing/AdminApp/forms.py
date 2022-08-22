@@ -34,3 +34,9 @@ class VideoForm(forms.ModelForm):
     class Meta:
         model=Videos
         fields = ['ruta','titulo','descripcion','seccion','idusuario']
+
+class CurriculaForm(forms.ModelForm):
+    class Meta:
+        model=Curriculas
+        fields = ['codigo','codigoint','asignatura','tipo','creditos','condicion',
+                'ht','hp','hl','requisito','departamento','idciclo','idescuela']

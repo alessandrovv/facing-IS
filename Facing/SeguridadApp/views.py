@@ -2,26 +2,38 @@ from django.shortcuts import redirect,render
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import authenticate,login,logout 
 from django.contrib import messages 
+from carrerasApp.models import *
+from django.db.models import Q
 
 # Create your views here.
 
 def home(request):
-    return render(request,'inicio.html')
+    escuela = Escuelas.objects.filter(estado=True).order_by('nombre')
+    context = {'escuela':escuela}
+    return render(request,'inicio.html',context)
 
 def faq(request):
-    return render(request,'nosotros/faq.html')
+    escuela = Escuelas.objects.filter(estado=True).order_by('nombre')
+    context = {'escuela':escuela}
+    return render(request,'nosotros/faq.html',context)
 
 def subir(request):
     return render(request,'nosotros/subir.html')
 
 def mvision(request):
-    return render(request,'nosotros/MVision.html')
+    escuela = Escuelas.objects.filter(estado=True).order_by('nombre')
+    context = {'escuela':escuela}
+    return render(request,'nosotros/MVision.html',context)
 
 def organigrama(request):
-    return render(request,'nosotros/organigrama.html')
+    escuela = Escuelas.objects.filter(estado=True).order_by('nombre')
+    context = {'escuela':escuela}
+    return render(request,'nosotros/organigrama.html',context)
 
 def reseñaH(request):
-    return render(request,'nosotros/reseñahistorica.html')
+    escuela = Escuelas.objects.filter(estado=True).order_by('nombre')
+    context = {'escuela':escuela}
+    return render(request,'nosotros/reseñahistorica.html',context)
 
 def acceder(request):
     return render(request,'login.html')
@@ -47,3 +59,11 @@ def salir(request):
     logout(request)
     messages.info(request,"Saliste exitosamente")
     return redirect("home")
+
+def curriculaCarrera(request,slug):
+    escuela = Escuelas.objects.filter(estado=True).order_by('nombre')
+    nombreEscuela = Escuelas.objects.filter(Q(slug__iexact=slug)).values("nombre").first()
+    idEscuela = Escuelas.objects.filter(Q(slug__iexact=slug)).values("idescuela").first()
+    curricula = Curriculas.objects.filter(Q(idescuela_id=idEscuela['idescuela']), estado=True).order_by('idciclo_id')
+    context = {'curricula':curricula, 'nombreEscuela':nombreEscuela['nombre'],'escuela':escuela}
+    return render(request,"carreras/curricula.html",context)

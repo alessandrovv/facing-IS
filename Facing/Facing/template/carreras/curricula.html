@@ -1,0 +1,83 @@
+{% extends "plantilla.html" %}
+
+{% load static %}
+
+{% block escuela %}
+    {% if escuela %}
+        {% for itemescuela in escuela %}
+        <li class="dropdown-submenu dropdown-hover" style="width: 15rem;">
+            <a class="dropdown-item dropdown-toggle" href="#" data-toggle="dropdown">
+                {{itemescuela.nombre}}
+            </a>
+            <ul class="dropdown-menu border-0 shadow">
+                <li>
+                    <a class="dropdown-item" href="{% url 'curriculacarrera' itemescuela.slug %}">
+                        Plan de Estudios
+                    </a>
+                </li>
+            </ul>
+        </li>
+        {% endfor %}
+    {% endif %}
+
+{% endblock %}
+{% block content %}
+<div style="padding: 4%;">
+    <div class="container">
+
+        <h3>CURRICULA DE {{nombreEscuela}}</h3><br>
+
+        <table class="table w-75 table-hover">
+
+            <tbody>
+                {% if curricula %}
+                {% for itemcurricula in curricula %}
+                    {% ifchanged itemcurricula.idciclo_id %}
+                <tr>
+                    <td colspan="10" class="text-center"><strong>{{itemcurricula.idciclo.ciclo}} CICLO</strong></td>
+                </tr>
+                <tr>
+                    <td><strong>Cod.</strong></td>
+                    <td><strong>Asignatura</strong></td>
+                    <td><strong>Tipos</strong></td>
+                    <td><strong>Cred</strong></td>
+                    <td><strong>Cond</strong></td>
+                    <td><strong>HT</strong></td>
+                    <td><strong>HP</strong></td>
+                    <td><strong>HL</strong></td>
+                    <td><strong>Requisito</strong></td>
+                    <td><strong>Departamento</strong></td>
+                </tr>
+                    {% endifchanged %}
+                <tr>
+                    <td>{{itemcurricula.codigoint}}</td>
+                    <td>{{itemcurricula.asignatura}}</td>
+                    <td>{{itemcurricula.tipo}}</td>
+                    <td>{{itemcurricula.creditos}}</td>
+                    <td>{{itemcurricula.condicion}}</td>
+                    <td>{{itemcurricula.ht}}</td>
+                    <td>{{itemcurricula.hp}}</td>
+                    <td>{{itemcurricula.hl}}</td>
+                    <td>{{itemcurricula.requisito}}</td>
+                    <td>{{itemcurricula.departamento}}</td>
+                </tr>
+                {% endfor %}
+                {% else %}
+                <tr style="text-align: center;">
+                    <td colspan="10">
+                        <p>No hay Registros</p>
+                    </td>
+                </tr>
+                {% endif %}
+            </tbody>
+        </table>
+
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+    </script>
+{% endblock %}

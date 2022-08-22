@@ -1,0 +1,117 @@
+{% extends "plantilla1.html" %}
+{% block content %}
+<div class="container">
+    <div class="card card-outline card-info mt-3">
+        <div class="card-header">
+            <h1 class="card-title">LISTADO DE CURRICULAS</h1>
+            <a href="{% url 'agregarcurricula' %}" class='btn btn-sm btn-primary btnadd'><i class='fas fa-plus'></i> NUEVO</a>
+        </div>
+        <div class="card-body">
+
+            <div class="row">
+                <div class="col-md-6 pull-right">
+                    <form action="" method="GET">
+                        <div class="input-group">
+                            <input type="text" name="buscar" id="buscar" cla ss="form-control" autofocus
+                                placeholder="Buscar" value="">
+                            <span class="input-group-btn">
+                                <button class="btn btn-primary">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </span>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+            <div class="table mt-2">
+                <table id="tablasubfamilias" class="table table-striped mt4" style="width:100%">
+                    <thead class="bg-info text-white">
+                        <tr>
+                            <th class="text-center">N°</th>
+                            <th class="text-center">CODIGO</th>
+                            <th class="text-center">ASIGNATURA</th>
+                            <th class="text-center">CRÉDITOS</th>
+                            <th class="text-center">DEPARTAMENTO</th>
+                            <th class="text-center">OPCIONES</th>
+                        </tr>
+                    </thead>
+                    {% if page_obj %}
+                    {% for itemcurricula in page_obj %}
+                    <tr>
+                        <td class="text-center">{{ forloop.counter }}</td>
+                        <td class="text-center">{{ itemcurricula.codigoint }}</td>
+                        <td class="text-center">{{ itemcurricula.asignatura }}</td>
+                        <td class="text-center">{{ itemcurricula.creditos }}</td>
+                        <td class="text-center">{{ itemcurricula.departamento }}</td>
+                        <td style="text-align: center;">
+                            <a href="{% url 'editarcurricula' itemcurricula.codigo %}" class="btn btn-info btnsm"><i class="fa fa-edit"></i></a>
+                            <a href="#" onclick="eliminarCurricula('{{itemcurricula.codigo}}', '{{itemcurricula.asignatura}}')"  class="btn btn-danger btnsm"><i class="fa fa-trash"></i></a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    {% else %}
+                    <tr style="text-align: center;">
+                        <td colspan="5">
+                            <p>No hay Registros</p>
+                        </td>
+                    </tr>
+                    {% endif %}
+                </table>
+                <div class="pagination">
+                    <span class="step-links">
+                        {% if page_obj.has_previous %}
+                            <a href="?page=1">&laquo; first</a>
+                            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                        {% endif %}
+                
+                        <span class="current">
+                            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                        </span>
+                
+                        {% if page_obj.has_next %}
+                            <a href="?page={{ page_obj.next_page_number }}">next</a>
+                            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                        {% endif %}
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock  %}
+{% block js %}
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    {% if messages %}
+    {% for m in messages %}
+        <script>
+            Swal.fire({
+            "title": "Eliminado",
+            "text":"{{m}}",
+            "icon":"success"
+            })
+        </script>
+    {% endfor %}
+    {% endif %}
+    <script>
+        function eliminarCurricula(id,nombre){
+            Swal.fire({ "title":"¿Realmente desea eliminar Registro?",
+            "text":"Codigo: "+ id + ", Asignatura: " + nombre,
+            "icon":"question",
+            "showCancelButton":true,
+            "cancelButtonText":"No",
+            "confirmButtonText":"Si",
+            "reverseButton":true,
+            "confirmButtonColor":"#dc3545"
+            }).then(function(result){ if(result.isConfirmed){
+                //console.log(window.location.href - 'lista/#');
+                let url = window.location.href;
+                url = url.slice(0,-8);
+                //console.log(`${url}/eliminar/${id}`);
+                window.location.replace(`${url}/eliminar/${id}`);
+                //window.location.href="escuela/eliminarescuela/"+id+"/" 
+            }
+            })
+        }
+    </script>
+{% endblock %} 

@@ -8,6 +8,26 @@
 </style>
 {% endblock %}
 
+{% block escuela %}
+    {% if escuela %}
+        {% for itemescuela in escuela %}
+        <li class="dropdown-submenu dropdown-hover" style="width: 15rem;">
+            <a class="dropdown-item dropdown-toggle" href="#" data-toggle="dropdown">
+                {{itemescuela.nombre}}
+            </a>
+            <ul class="dropdown-menu border-0 shadow">
+                <li>
+                    <a class="dropdown-item" href="{% url 'curriculacarrera' itemescuela.slug %}">
+                        Plan de Estudios
+                    </a>
+                </li>
+            </ul>
+        </li>
+        {% endfor %}
+    {% endif %}
+
+{% endblock %}
+
 {% block content %}
 <div style="padding: 4%;">
     <div class="container">

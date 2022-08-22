@@ -239,3 +239,48 @@ def eliminarvideo(request,id):
     noticia.save()
     print(noticia)
     return redirect("videos")
+
+def listarCurricula(request):
+    queryset = request.GET.get("buscar")
+    curricula = Curriculas.objects.filter(estado=True).order_by('-codigo').values()
+    if queryset:
+        curricula = Curriculas.objects.filter(Q(codigoint__icontains=queryset) | Q(asignatura__icontains=queryset),estado=True).values()
+    paginator = Paginator(curricula,10)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    return render(request,"curriculas/listar.html",{'page_obj':page_obj})
+
+def agregarCurricula(request):
+    form = CurriculaForm()
+    if request.method == 'POST':
+        form = CurriculaForm(request.POST)
+        if form.is_valid():
+            codigo_curricula_form = form.cleaned_data.get("codigo")
+            codigo = Curriculas.objects.filter(Q(codigo__iexact=codigo_curricula_form), estado=True).values("codigo")
+            if not codigo:
+                form.save()
+                return redirect("listarcurricula")
+            else:
+                messages.error(request,"La escuela '"+ codigo_curricula_form +"' ya existe.")
+        else:
+            form=CurriculaForm()
+    context = {'form':form}
+    return render(request,"curriculas/agregar.html",context)
+
+def editarCurricula(request,codigo):
+    curricula = Curriculas.objects.get(codigo=codigo)
+    if request.method=='POST':
+        form = CurriculaForm(request.POST,instance=curricula)
+        if form.is_valid():
+            form.save()
+            return redirect("listarcurricula")
+    else:
+        form=CurriculaForm(instance=curricula)
+        context={'form':form}
+        return render(request,"curriculas/editar.html",context)
+
+def eliminarCurricula(request,codigo):
+    curricula=Curriculas.objects.get(codigo=codigo)
+    curricula.estado = False
+    curricula.save()
+    return redirect("listarcurricula")

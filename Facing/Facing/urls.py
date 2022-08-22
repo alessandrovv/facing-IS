@@ -28,6 +28,7 @@ urlpatterns = [
     path('organigrama/',organigrama ,name="organigrama"),
     path('faq/',faq ,name="preguntasfrec"),
     path('reseña/',reseñaH ,name="reseñahistorica"),
+    path('especialidades/<str:slug>/plan-de-estudios/',curriculaCarrera,name="curriculacarrera"),
     path('logout/',salir,name="logout"),
     path('ingresar/', acceder, name='login'),
     path('subirvideo/', subir, name='subirvideo'),   
@@ -52,6 +53,10 @@ urlpatterns = [
     path('agregarvideo',agregarvideo,name='addvideo'),
     path('listarvideo/eliminarvideo/<int:id>/',eliminarvideo,name='deletevideo'),
     path('editarvideo/<int:id>/',editarvideo,name='editvideo'),
+    path('curricula/lista/',listarCurricula,name='listarcurricula'),
+    path('curricula/agregar/',agregarCurricula,name='agregarcurricula'),
+    path('curricula/editar/<int:codigo>/',editarCurricula,name='editarcurricula'),
+    path('curricula/eliminar/<int:codigo>/',eliminarCurricula,name='eliminarcurricula'),
 ]
 
 if settings.DEBUG:
