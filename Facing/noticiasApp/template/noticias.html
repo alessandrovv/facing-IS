@@ -1,0 +1,53 @@
+{% extends "plantilla.html" %}
+
+{% load static %}
+
+{% block content %}
+<style>
+    .card {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        transition: 0.3s;
+        border: none;
+}
+.text-muted i {
+    margin: 0 10px;
+  }
+</style>
+<div style="padding: 4%;">
+    <div class="container">
+        <div class="text-center">
+          <h1>NOTICIAS</h1>
+        </div>
+        <div class="container">
+          <div class="card-columns">
+            {% if noticia %}
+            {% for itemnoticia in noticia %}
+            <div class="card">
+                <img class="card-img-top" src="../../../media/{{ itemnoticia.ruta }}" alt="Card image cap">
+                <div class="card-body">
+                  <h4 class="card-title">{{itemnoticia.titulo}}</h4>
+                  <p class="card-text">
+                    {{itemnoticia.descripcion}}
+                  </p>
+                  <p class="card-text"><i class="fas fa-calendar-alt"></i>{{itemnoticia.fecha}}</small></p>
+              </div>
+            </div>
+        {% endfor %}
+        {% else %}
+        <tr style="text-align: center;">
+            <td colspan="3">
+                <p>No hay Registros</p>
+            </td>
+        </tr>
+        {% endif %}  
+          </div>
+        </div>
+      </div>
+
+{% endblock%}
+
+{% block scripts %}
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+    </script>
+{% endblock %}

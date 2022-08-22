@@ -16,6 +16,6 @@ class Noticia(models.Model):
     seccion = models.TextField()
     fecha = models.DateField()
     estado = models.BooleanField(default=True)
-    
+    ruta = models.ImageField(upload_to="docentes", null=True, default="docentes/perfil.jpg")
 
    

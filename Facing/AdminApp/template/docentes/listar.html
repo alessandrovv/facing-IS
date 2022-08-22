@@ -42,7 +42,7 @@
                         <td>{{ itemdocente.idDocente }}</td>
                         <td>{{ itemdocente.Nombre }}</td>
                         <td><img src="../../../media/{{ itemdocente.ImagenRuta }}" class="img-thumbnail" width="200" height="200"></td>
-                        <td>{{ itemdocente.idEscuela_id }}</td>
+                        <td>{{ itemdocente.idEscuela.nombre}}</td>
                         <td style="text-align: center;">
                             <a href="{% url 'editdocente' itemdocente.idDocente %}" class="btn btn-info btnsm"><i class="fa fa-edit"></i> Editar</a>
                             <a href="{% url 'deletedocente' itemdocente.idDocente %}" class="btn btn-danger btnsm"><i class="fa fa-trash"></i>Eliminar</a>

@@ -4,6 +4,7 @@ from django import forms
 from django.forms import fields
 from carrerasApp.models import *
 from noticiasApp.models import *
+from tesisApp.models import *
 
 class DateInput(forms.DateInput):
     input_type = 'date'
@@ -26,7 +27,7 @@ class EscuelaForm(forms.ModelForm):
 class NoticiaForm(forms.ModelForm):
     class Meta:
         model = Noticias
-        fields = ['titulo', 'descripcion', 'seccion', 'fecha','idusuario']
+        fields = ['titulo', 'descripcion', 'seccion', 'fecha','idusuario', 'ruta']
         widgets = {
             'fecha':DateInput()
         }
@@ -35,8 +36,15 @@ class VideoForm(forms.ModelForm):
         model=Videos
         fields = ['ruta','titulo','descripcion','seccion','idusuario']
 
+
 class CurriculaForm(forms.ModelForm):
     class Meta:
         model=Curriculas
         fields = ['codigo','codigoint','asignatura','tipo','creditos','condicion',
                 'ht','hp','hl','requisito','departamento','idciclo','idescuela']
+
+class tesisForm(forms.ModelForm):
+    class Meta:
+        model=Tesis
+        fields = ['ruta','titulo','descripcion','autor']
+

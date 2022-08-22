@@ -6,6 +6,8 @@ from carrerasApp.models import *
 from django.db.models import Q
 
 # Create your views here.
+escuelas=Escuelas.objects.all()
+context={'escuelas':escuelas}
 
 def home(request):
     escuela = Escuelas.objects.filter(estado=True).order_by('nombre')
@@ -33,7 +35,7 @@ def organigrama(request):
 def reseñaH(request):
     escuela = Escuelas.objects.filter(estado=True).order_by('nombre')
     context = {'escuela':escuela}
-    return render(request,'nosotros/reseñahistorica.html',context)
+    return render(request,'nosotros/MVision.html',context)
 
 def acceder(request):
     return render(request,'login.html')
