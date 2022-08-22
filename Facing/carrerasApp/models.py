@@ -6,7 +6,7 @@ from tkinter import CASCADE
 from django.db import models
 
 class Escuelas(models.Model):
-    idescuela=models.AutoField(primary_key=True)
+    id=models.AutoField(primary_key=True)
     nombre=models.CharField(max_length=30)
     slug=models.CharField(max_length=12)
     visto=models.IntegerField()
