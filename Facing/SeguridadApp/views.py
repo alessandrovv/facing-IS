@@ -10,31 +10,21 @@ escuelas=Escuelas.objects.all()
 context={'escuelas':escuelas}
 
 def home(request):
-    escuela = Escuelas.objects.filter(estado=True).order_by('nombre')
-    context = {'escuela':escuela}
     return render(request,'inicio.html',context)
 
 def faq(request):
-    escuela = Escuelas.objects.filter(estado=True).order_by('nombre')
-    context = {'escuela':escuela}
     return render(request,'nosotros/faq.html',context)
 
 def subir(request):
     return render(request,'nosotros/subir.html')
 
 def mvision(request):
-    escuela = Escuelas.objects.filter(estado=True).order_by('nombre')
-    context = {'escuela':escuela}
     return render(request,'nosotros/MVision.html',context)
 
 def organigrama(request):
-    escuela = Escuelas.objects.filter(estado=True).order_by('nombre')
-    context = {'escuela':escuela}
     return render(request,'nosotros/organigrama.html',context)
 
 def reseñaH(request):
-    escuela = Escuelas.objects.filter(estado=True).order_by('nombre')
-    context = {'escuela':escuela}
     return render(request,'nosotros/MVision.html',context)
 
 def acceder(request):
