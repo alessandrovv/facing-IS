@@ -28,3 +28,5 @@ class Videos(models.Model):
     seccion=models.SmallIntegerField()
     idusuario=models.ForeignKey(User,on_delete=models.CASCADE)
     estado=models.BooleanField(default=True)
+
+    
