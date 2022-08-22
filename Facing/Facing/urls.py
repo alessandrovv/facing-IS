@@ -18,8 +18,11 @@ from django.contrib import admin
 from django.urls import path
 from SeguridadApp.views import *
 from AdminApp.views import *
+from noticiasApp.views import *
 from django.conf import settings
 from django.conf.urls.static import static
+
+from tesisApp.views import muestratesis
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -52,6 +55,12 @@ urlpatterns = [
     path('agregarvideo',agregarvideo,name='addvideo'),
     path('listarvideo/eliminarvideo/<int:id>/',eliminarvideo,name='deletevideo'),
     path('editarvideo/<int:id>/',editarvideo,name='editvideo'),
+    path('noticias',muestraNoticias, name="noticias"),
+    path('tesis/lista/',listartesis,name='tesis'),
+    path('tesis/agregar/',agregartesis,name='addtesis'),
+    path('tesis/editar/<int:id>/',editartesis,name='edittesis'),
+    path('tesis/eliminar/<int:id>/',eliminartesis,name='deletetesis'),
+    path('tesis/',muestratesis,name='tesisshow')
 ]
 
 if settings.DEBUG:

@@ -13,6 +13,7 @@ class Noticias(models.Model):
     seccion=models.SmallIntegerField()
     fecha=models.DateTimeField()
     idusuario=models.ForeignKey(User,on_delete=models.CASCADE)
+    ruta=models.ImageField(upload_to="noticias", null = True)
     estado=models.BooleanField(default=True)
 
 class Noticias_imagenes(models.Model):

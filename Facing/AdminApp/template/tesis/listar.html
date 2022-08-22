@@ -1,10 +1,10 @@
-{% extends "plantilla.html" %}
+{% extends "plantilla1.html" %}
 {% block content %}
 <div class="container">
     <div class="card card-outline card-info mt-3">
         <div class="card-header">
             <h1 class="card-title">LISTADO DE TESIS</h1>
-            <a href="{% url 'agregartesis'}" class='btn btn-sm btn-primary btnadd'><i class='fas fa-plus'></i> NUEVO</a>
+            <a href="{% url 'addtesis'%}" class='btn btn-sm btn-primary btnadd'><i class='fas fa-plus'></i> NUEVO</a>
         </div>
         <div class="card-body">
 
@@ -27,8 +27,11 @@
                 <table id="tablasubfamilias" class="table table-striped mt4" style="width:100%">
                     <thead class="bg-info text-white">
                         <tr>
-                            <th></th>
-                            <th></th>
+                            <th>ID</th>
+                            <th>Titulo</th>
+                            <th>Autor</th>
+                            <th>Abstract</th>
+                            <th>Documento</th>
                             <th>
                                 <center>OPCIONES</center>
                             </th>
@@ -38,10 +41,13 @@
                     {% for itemtesis in tesis %}
                     <tr>
                         <td>{{ itemtesis.id }}</td>
+                        <td>{{ itemtesis.titulo }}</td>
+                        <td>{{ itemtesis.autor }}</td>
                         <td>{{ itemtesis.descripcion }}</td>
+                        <td><a href="../../../media/{{ itemtesis.ruta }}" download="Acme Documentation (ver. 2.0.1).txt">Descargar</a></td>
                         <td style="text-align: center;">
-                            <a href="" class="btn btn-info btnsm"><i class="fa fa-edit"></i> Editar</a>
-                            <a href="" class="btn btn-danger btnsm"><i class="fa fa-trash"></i>Eliminar</a>
+                            <a href="{% url 'edittesis' itemtesis.id %}" class="btn btn-info btnsm"><i class="fa fa-edit"></i> Editar</a>
+                            <a href="{% url 'deletetesis' itemtesis.id %}" class="btn btn-danger btnsm"><i class="fa fa-trash"></i>Eliminar</a>
                         </td>
                     </tr>
                     {% endfor %}

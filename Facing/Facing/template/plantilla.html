@@ -133,7 +133,21 @@
                                 <i class="fas fa-fw fa-award"></i>Calidad
                             </a>
                         </li>
-    
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'noticias' %}">
+                                <i class="fas fa-bullhorn"></i>
+                                Noticias
+                            </a>
+                        </li> 
+                        
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'tesisshow' %}">
+                                <i class="fas fa-book"></i>
+                                Tesis
+                            </a>
+                        </li> 
+
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'preguntasfrec' %}">
                                 <i class="fas fa-fw fa-question-circle"></i>FAQ
@@ -146,6 +160,7 @@
                             </a>
                         </li>
                     </ul>
+
                 </div>
                 {% if request.user.is_authenticated %}
         <ul class="navbar-nav ml-auto order-1 order-md-3 navbar-no-expand">

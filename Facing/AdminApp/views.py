@@ -5,6 +5,8 @@ from django.shortcuts import render,redirect,get_object_or_404,HttpResponseRedir
 import imp
 from django.contrib import messages 
 from carrerasApp.models import *
+from noticiasApp.models import *
+from tesisApp.models import *
 from django.db.models import Q
 from .forms import *
 from django.core.paginator import Paginator
@@ -161,32 +163,35 @@ def listarNoticia(request):
 
 def agregarNoticia(request):
     form = NoticiaForm()
-    if request.method == 'POST':
-        form = NoticiaForm(request.POST)
+    if request.method=="POST":
+        form= NoticiaForm(request.POST,request.FILES)
         if form.is_valid():
-            titulo_noticia_form = form.cleaned_data.get("titulo")
-            noticia = Noticias.objects.filter(Q(titulo__iexact=titulo_noticia_form), estado=True).values("titulo")
-            if not noticia:
-                form.save()
-                return redirect("listarnoticia")
-            else:
-                messages.error(request,"La noticia '"+ titulo_noticia_form +"' ya existe.")
+            form.save() 
+            return redirect("listarnoticia")
         else:
-            form=NoticiaForm()
-    context = {'form':form}
-    return render(request,"noticias/agregar.html",context)
+            form = NoticiaForm()
+            print (request.POST)
+    context={'form':form} 
+    return render(request,"noticias/agregar.html",context) 
 
 def editarNoticia(request,id):
-    noticia = Noticias.objects.get(id=id)
     if request.method=='POST':
-        form = NoticiaForm(request.POST,instance=noticia)
+        if id ==None:
+            form = NoticiaForm(request.POST)
+        else:
+            noticia = Noticias.objects.get(pk=id)
+            form = NoticiaForm(request.POST,request.FILES, instance=noticia)
         if form.is_valid():
             form.save()
-            return redirect("listarnoticia")
+        print(request.POST)
+        return redirect("listarnoticia")
     else:
-        form=NoticiaForm(instance=noticia)
-        context={'form':form}
-        return render(request,"noticias/editar.html",context)
+        if id == None: 
+            form = NoticiaForm()
+        else:
+            noticia = Noticias.objects.get(pk = id)
+            form = NoticiaForm(instance=noticia)
+        return render(request,"noticias/editar.html",{'form':form})
 
 def eliminarNoticia(request,id):
     noticia=Noticias.objects.get(id=id)
@@ -239,3 +244,49 @@ def eliminarvideo(request,id):
     noticia.save()
     print(noticia)
     return redirect("videos")
+
+def listartesis(request):
+    queryset=request.GET.get("buscar")
+    tesis=Tesis.objects.order_by('-id').values()
+    if queryset:
+        tesis=Tesis.objects.filter(Q(titulo__icontains=queryset)).distinct() 
+    context={'tesis':tesis}
+    return render(request,"tesis/listar.html",context)
+
+def agregartesis(request):
+    form = tesisForm()
+    if request.method=="POST":
+        form= tesisForm(request.POST,request.FILES)
+        if form.is_valid():
+            form.save() 
+            return redirect("tesis")
+        else:
+            form = tesisForm()
+            print (request.POST)
+    context={'form':form} 
+    return render(request,"tesis/agregar.html",context) 
+
+def editartesis(request,id):
+    if request.method == "POST":
+        if id==None:
+            form = tesisForm(request.POST)
+        else:
+            tesis = Tesis.objects.get(pk=id)
+            form = tesisForm(request.POST,request.FILES, instance=tesis)
+        if form.is_valid():
+            form.save()
+        return redirect("tesis")
+    else:
+        if id==None:
+            form = tesisForm()
+        else:
+            tesis = Tesis.objects.get(pk = id)
+            form = tesisForm(instance=tesis)
+        return render(request,"tesis/editar.html",{'form':form})
+    
+def eliminartesis(request,id):
+    tesis=Tesis.objects.get(id=id)
+    tesis.estado = False
+    tesis.save()
+    print(tesis)
+    return redirect("tesis")

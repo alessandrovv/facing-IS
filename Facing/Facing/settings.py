@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'noticiasApp',
     'SeguridadApp',
     'AdminApp',
+    'tesisApp',
     'crispy_forms',
 ]
 
@@ -63,7 +64,9 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [os.path.join(BASE_DIR,'Facing/template'),
                  os.path.join(BASE_DIR,'SeguridadApp/template'),
-                 os.path.join(BASE_DIR,'AdminApp/template')],
+                 os.path.join(BASE_DIR,'AdminApp/template'),
+                 os.path.join(BASE_DIR,'noticiasApp/template'),
+                 os.path.join(BASE_DIR,'tesisApp/template')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

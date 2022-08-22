@@ -1,4 +1,4 @@
-{% extends "plantilla.html" %}
+{% extends "plantilla1.html" %}
 {% block content %}
 {% load crispy_forms_tags %}
 <div class="container">
@@ -7,14 +7,14 @@
             <h1 class="card-title">AGREGAR TESIS</h1>
         </div>
         <div class="card-body">
-            <form action="" method="post">
+            <form action="" method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 {{ form | crispy}}
 
                 <div class="d-flex justify-content-end">
-                    <a href="{% url 'listartesis' %}" class="btn btnsecondary">Cancelar</a>
+                    <a href="{% url 'tesis' %}" class="btn btnsecondary">Cancelar</a>
                     &nbsp;
-                    <button type="submit" class="btn btnprimary">Actualizar</button>
+                    <button type="submit" class="btn btnprimary">Agregar</button>
                 </div>
             </form>
         </div>
