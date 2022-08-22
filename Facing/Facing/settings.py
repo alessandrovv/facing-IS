@@ -64,7 +64,8 @@ TEMPLATES = [
         'DIRS': [os.path.join(BASE_DIR,'Facing/template'),
                  os.path.join(BASE_DIR,'SeguridadApp/template'),
                  os.path.join(BASE_DIR,'novedadesApp/template'),
-                 os.path.join(BASE_DIR,'AdminApp/template')],
+                 os.path.join(BASE_DIR,'AdminApp/template'),
+                 os.path.join(BASE_DIR,'carrerasApp/template')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -86,7 +87,7 @@ WSGI_APPLICATION = 'Facing.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'facing',
+        'NAME': 'dbfacing',
         'USER': 'root',
         'PASSWORD': '',
         'HOST': 'localhost',

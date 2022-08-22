@@ -85,10 +85,13 @@
                                     <a class="dropdown-item dropdown-toggle" href="#" data-toggle="dropdown">Plana Docente
                                     </a>
                                     <ul class="dropdown-menu border-0 shadow">
-                                            <li>
-                                                <a class="dropdown-item" href="">
-                                                </a>
-                                            </li>
+                                        {% for itemescuelas in escuelas %}
+                                        <li>
+                                            <a class="dropdown-item" href="{% url 'docentes' itemescuelas.idescuela %}">
+                                                {{ itemescuelas.nombre }}
+                                            </a>
+                                        </li>
+                                    {% endfor %}
                                     </ul>
                                 </li>
                             </ul>
@@ -98,13 +101,13 @@
                                 <i class="fas fa-fw fa-university"></i>Carreras
                             </a>
                             <ul class="dropdown-menu border-0 shadow">
-                                
+                                {% for itemescuelas in escuelas %}
                                     <li>
                                         <a class="dropdown-item" href="">
-                                            
+                                            {{ itemescuelas.nombre }}
                                         </a>
                                     </li>
-                                
+                                {% endfor %}
                             </ul>
                         </li>
     
@@ -141,7 +144,7 @@
                         </li>
     
                         <li class="nav-item">
-                            <a class="nav-link" href="">
+                            <a class="nav-link" href="{% url 'subirvideo' %}">
                                 <i class="fas fa-fw fa-tasks"></i>Subir
                             </a>
                         </li>
@@ -152,7 +155,7 @@
             <li class="nav-item dropdown user-menu">
                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                     <img src="https://picsum.photos/300/300" class="user-image img-circle elevation-2"
-                        alt="{{request.user.name}}">
+                        alt="{{request.user.username}}">
                     <span class="d-none d-md-inline">
                         {{request.user.first_name}} {{request.user.last_name}} 
                     </span>
@@ -163,7 +166,7 @@
                         <img src="https://picsum.photos/300/300" class="img-circle elevation-2"
                             alt="{{request.user.name}}">
                         <p>
-                            {{request.user.name}}
+                            {{request.user.username}}
                             <small>{{request.user.email}}</small>
                             <small>Administrador</small>
                         </p>
@@ -172,6 +175,12 @@
                         <a class="btn btn-default btn-flat float-right  btn-block " href="{% url 'logout' %}">
                             <i class="fa fa-fw fa-power-off"></i>
                             Salir
+                        </a>
+                    </li>
+                    <li class="user-footer">
+                        <a class="btn btn-default btn-flat float-right  btn-block " href="{% url 'dashboard' %}">
+                            <i class="fas fa-chalkboard"></i>
+                            Administrar
                         </a>
                     </li>
                 </ul>

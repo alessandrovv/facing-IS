@@ -19,6 +19,8 @@ from django.urls import path
 from SeguridadApp.views import *
 from AdminApp.views import *
 from novedadesApp.views import *
+
+from carrerasApp.views import *
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -57,6 +59,8 @@ urlpatterns = [
     path('resolucionesconsejo/', resolucionesconsejo, name='resolucionesconsejo'),
     path('virtual/', virtual, name='virtual'),
     path('calidad/', calidad, name='calidad'),
+    path('planadocente/<int:id>/',listardocentes,name='docentes'),
+
 ]
 
 if settings.DEBUG:

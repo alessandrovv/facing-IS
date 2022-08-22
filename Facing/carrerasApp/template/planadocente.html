@@ -1,0 +1,45 @@
+{% extends "plantilla.html" %}
+
+{% block css %}
+{% endblock %}
+
+
+
+{% block content %}
+<div style="padding: 4%;">
+    <div class="container">
+        <h1>Plana Docente de: {{escuela.nombre}}</h1>
+        <a href="" class="btn btn-outline-success">AGREGAR DOCENTE</a><br><br>
+        <div class="row">
+            {% for itemdocentes in docentes %}
+            <div class="col-12">
+                <h1>{{ itemdocentes.Nombre }}</h1>
+                <h3>Experiencia Laboral</h3>
+                <img src="../../media/{{itemdocentes.ImagenRuta}}" alt="" class="img-thumbnail">
+                {% for itemexp in expLab %}
+                {% for itemexpL in itemexp %}
+                {% if itemdocentes.idDocente == itemexpL.iddocente_id %}
+                <h5>{{ itemexpL.exp }}</h5>
+                {% endif %}
+                {% endfor %}
+                {% endfor %}
+                <h3>Grados</h3>
+                {% for itemgrados in grados %}
+                {% for itemgrad in itemgrados %}
+                {% if itemdocentes.idDocente == itemgrad.iddocente_id %}
+                <h5>{{ itemgrad.grado }}</h5>
+                {% endif %}
+                {% endfor %}
+                {% endfor %}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+{% block scripts %}
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+    </script>
+{% endblock %}
