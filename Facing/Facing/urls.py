@@ -19,6 +19,8 @@ from django.urls import path
 from SeguridadApp.views import *
 from AdminApp.views import *
 from noticiasApp.views import *
+from novedadesApp.views import *
+from carrerasApp.views import *
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -60,7 +62,12 @@ urlpatterns = [
     path('tesis/agregar/',agregartesis,name='addtesis'),
     path('tesis/editar/<int:id>/',editartesis,name='edittesis'),
     path('tesis/eliminar/<int:id>/',eliminartesis,name='deletetesis'),
-    path('tesis/',muestratesis,name='tesisshow')
+    path('tesis/',muestratesis,name='tesisshow'),
+    path('concursodocente/', concursodocente, name='concursodocente'),
+    path('resolucionesconsejo/', resolucionesconsejo, name='resolucionesconsejo'),
+    path('virtual/', virtual, name='virtual'),
+    path('calidad/', calidad, name='calidad'),
+    path('planadocente/<int:id>/',listardocentes,name='docentes'),
 ]
 
 if settings.DEBUG:

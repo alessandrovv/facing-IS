@@ -64,9 +64,11 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [os.path.join(BASE_DIR,'Facing/template'),
                  os.path.join(BASE_DIR,'SeguridadApp/template'),
-                 os.path.join(BASE_DIR,'AdminApp/template'),
                  os.path.join(BASE_DIR,'noticiasApp/template'),
-                 os.path.join(BASE_DIR,'tesisApp/template')],
+                 os.path.join(BASE_DIR,'tesisApp/template'),
+                 os.path.join(BASE_DIR,'novedadesApp/template'),
+                 os.path.join(BASE_DIR,'AdminApp/template'),
+                 os.path.join(BASE_DIR,'carrerasApp/template')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -134,6 +136,7 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR,'SeguridadApp/static')]
 STATICFILES_DIRS = [os.path.join(BASE_DIR,'AdminApp/static')]
 STATICFILES_DIRS = [os.path.join(BASE_DIR,'Facing/static')]
+STATICFILES_DIRS = [os.path.join(BASE_DIR,'novedadesApp/static')]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
