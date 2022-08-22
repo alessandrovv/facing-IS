@@ -17,6 +17,9 @@ def faq(request):
 def subir(request):
     return render(request,'nosotros/subir.html',context)
 
+def subir(request):
+    return render(request,'nosotros/subir.html')
+
 def mvision(request):
     return render(request,'nosotros/MVision.html',context)
 

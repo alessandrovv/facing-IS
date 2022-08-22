@@ -1,4 +1,5 @@
 from django.shortcuts import render
+
 from carrerasApp.models import *
 # Create your views here.
 escuelas=Escuelas.objects.all()
@@ -15,3 +16,4 @@ def listardocentes(request,id):
         expLab.append(exp)
     context = {'grados':gradosDoc,'docentes':docentes,'expLab':expLab,'escuelas':escuelas,'escuela':escuela}
     return render(request,"planadocente.html",context) 
+
