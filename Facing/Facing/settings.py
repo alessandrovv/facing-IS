@@ -135,9 +135,8 @@ USE_TZ = True
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR,'SeguridadApp/static')]
 STATICFILES_DIRS = [os.path.join(BASE_DIR,'AdminApp/static')]
-STATICFILES_DIRS = [os.path.join(BASE_DIR,'Facing/static')]
 STATICFILES_DIRS = [os.path.join(BASE_DIR,'novedadesApp/static')]
-
+STATICFILES_DIRS = [os.path.join(BASE_DIR,'Facing/static')]
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
